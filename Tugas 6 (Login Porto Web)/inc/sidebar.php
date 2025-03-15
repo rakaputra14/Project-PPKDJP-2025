@@ -3,7 +3,7 @@
     <ul class="sidebar-nav" id="sidebar-nav">
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="index.html">
+        <a class="nav-link collapsed" href="index.php">
           <i class="bi bi-grid"></i>
           <span>Dashboard</span>
         </a>
@@ -36,6 +36,13 @@
         <a class="nav-link collapsed" href="resume.php">
           <i class="bi bi-person"></i>
           <span>Resume</span>
+        </a>
+      </li><!-- End Services Page Nav -->
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="project.php">
+          <i class="bi bi-person"></i>
+          <span>Project</span>
         </a>
       </li><!-- End Services Page Nav -->
 
