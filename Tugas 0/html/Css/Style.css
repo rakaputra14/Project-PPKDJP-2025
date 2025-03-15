@@ -1,0 +1,52 @@
+/* Display inti */
+.display-inti .card .card-header p,
+.display-inti .card .card-footer p {
+  margin: 10px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.display-inti .card .card-body p {
+  font-size: 5vw;
+  font-weight: bold;
+}
+
+.display-inti .card .card-body {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+/* Display antrian */
+.display-antrian .card .card-body p {
+  font-size: 3vw;
+  font-weight: bold;
+}
+
+.display-antrian .card .card-body {
+  margin-bottom: 10px;
+}
+
+.jadwal-sholat .box-jadwal-sholat {
+  background: linear-gradient(164deg, green, white) !important;
+  color: whitesmoke;
+  padding: 10px;
+  margin-bottom: 5px;
+  font-weight: bold;
+  font-size: 1vw;
+}
+.footer-grid {
+  background-color: green;
+}
+/* .flex-container {
+    display: flex;
+    flex-direction: column;
+    background-color: bisque;
+}
+
+.flex-container > div {
+    background-color: #f1f1f1;
+    width: 100px;
+    margin: 10px;
+    text-align: center;
+    line-height: 75px;
+    font-size: 30px;
+  } */

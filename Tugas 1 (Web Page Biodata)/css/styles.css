@@ -1,0 +1,20 @@
+nav {
+  background-color: purple;
+  color: white;
+  padding: 10px;
+  display: flex;
+  gap: 30px;
+}
+
+nav a {
+  text-decoration: none;
+  color: white;
+}
+
+nav a:hover {
+  color: yellow;
+}
+
+footer {
+  text-align: center;
+}

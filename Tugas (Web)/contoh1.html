@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Scroll Fade In and Out</title>
+
+  <!-- AOS CSS for animations (optional, can be removed if not needed) -->
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet" />
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
+
+  <!-- Font Awesome for social media icons -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet" />
+
+  <!-- Custom CSS for styling -->
+  <style>
+    body {
+      font-family: "Roboto", sans-serif;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      background-color: black;
+      /* Black background */
+      position: relative;
+    }
+
+    /* Set the viewport height for each section */
+    section {
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #fff;
+      opacity: 0;
+      /* Initially hidden */
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      transition: opacity 1s ease;
+      /* Smooth fade effect */
+    }
+
+    /* Section text styles */
+    h1,
+    h2 {
+      font-size: 3em;
+      text-align: center;
+    }
+
+    p {
+      font-size: 1.2em;
+      width: 70%;
+      text-align: center;
+    }
+
+    /* Logo */
+    .logo {
+      position: fixed;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 10;
+    }
+
+    .logo img {
+      width: 100px;
+      /* Adjust logo size */
+    }
+
+    /* Footer */
+    .footer {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 10;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    .footer a {
+      color: #fff;
+      font-size: 24px;
+      text-decoration: none;
+    }
+
+    .footer a:hover {
+      color: #1a73e8;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Logo -->
+  <div class="logo">
+    <img src="../Tugas (Web)/img/" alt="Logo" />
+  </div>
+
+  <!-- Landing Section -->
+  <section id="landing" data-aos="fade-up">
+    <div>
+      <h1>Welcome to Our Website</h1>
+    </div>
+  </section>
+
+  <!-- About Us Section -->
+  <section id="about" data-aos="fade-up">
+    <div>
+      <h2>About Us</h2>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed imperdiet
+        orci ut elit suscipit, at faucibus nisl tincidunt. Aliquam erat
+        volutpat. Aenean vel est eget nulla mollis auctor.
+      </p>
+    </div>
+  </section>
+
+  <!-- Footer with social media icons -->
+  <div class="footer">
+    <a href="https://www.instagram.com" target="_blank">
+      <i class="fab fa-instagram"></i>
+    </a>
+    <a href="https://www.youtube.com" target="_blank">
+      <i class="fab fa-youtube"></i>
+    </a>
+    <a href="https://www.linkedin.com" target="_blank">
+      <i class="fab fa-linkedin"></i>
+    </a>
+  </div>
+
+  <!-- AOS JavaScript Library -->
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+
+  <!-- Custom JavaScript for Section Transitions -->
+  <script>
+    AOS.init({
+      duration: 1500,
+      easing: "ease-in-out",
+      once: true,
+    });
+
+    // Initially show the landing section
+    document.getElementById("landing").style.opacity = 1;
+
+    // Store the index of the current section
+    let currentSectionIndex = 0;
+    const sections = document.querySelectorAll("section");
+    const totalSections = sections.length;
+
+    // Add event listener for wheel scroll
+    window.addEventListener("wheel", handleScroll);
+
+    // Handle scroll event
+    function handleScroll(event) {
+      // Prevent default scroll behavior to avoid page jump
+      event.preventDefault();
+
+      // Determine if the scroll was up or down
+      if (event.deltaY > 0)
+      {
+        // Scroll down, show the next section
+        showNextSection();
+      } else
+      {
+        // Scroll up, show the previous section
+        showPreviousSection();
+      }
+    }
+
+    // Function to show the next section
+    function showNextSection() {
+      if (currentSectionIndex < totalSections - 1)
+      {
+        // Hide current section
+        sections[currentSectionIndex].style.opacity = 0;
+
+        // Move to the next section
+        currentSectionIndex++;
+        sections[currentSectionIndex].style.opacity = 1;
+      }
+    }
+
+    // Function to show the previous section
+    function showPreviousSection() {
+      if (currentSectionIndex > 0)
+      {
+        // Hide current section
+        sections[currentSectionIndex].style.opacity = 0;
+
+        // Move to the previous section
+        currentSectionIndex--;
+        sections[currentSectionIndex].style.opacity = 1;
+      }
+    }
+  </script>
+</body>
+
+</html>

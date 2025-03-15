@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        nav {
+            background-color: purple;
+            color: white;
+            padding: 10px;
+            display: flex;
+            gap: 30px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: white;
+        }
+
+        nav a:hover {
+            color: yellow;
+        }
+
+        footer {
+            position: fixed;
+            bottom: 0;
+            background-color: green;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            width: 100%;
+        }
+
+        .gallery {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .gallery img {
+            width: 500px;
+            height: 500px;
+            object-fit: cover;
+            border-radius: 50px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <a href="Landing.html">Beranda</a>
+        <a href="About.html">Tentang Kami</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="kontak.html">Kontak</a>
+    </nav>
+    <header>
+        <h1>Galeri Kami</h1>
+        <hr>
+        <p>
+            <small>Cat Pics</small>
+        </p>
+    </header>
+    <div class="content">
+        <div class="gallery">
+            <img src="../img/Untitled.jpg" alt="gambar 1">
+            <img src="../img/Untitled4.jpg" alt="gambar 2">
+            <img src="../img/Untitled3.jpg" alt="gambar 3">
+            <img src="../img/Untitled2.jpg" alt="gambar 4">
+            <img src="../img/Untitled4.jpg" alt="gambar 2">
+            <img src="../img/Untitled4.jpg" alt="gambar 2">
+        </div>
+    </div>
+    <footer> &copy; website Design By Raka Refiando Putra</footer>
+</body>
+
+</html>
