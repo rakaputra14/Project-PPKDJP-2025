@@ -46,6 +46,13 @@
         </a>
       </li><!-- End Services Page Nav -->
 
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="blog.php">
+          <i class="bi bi-newspaper"></i>
+          <span>Blog</span>
+        </a>
+      </li><!-- End Services Page Nav -->
+
     </ul>
 
   </aside>
