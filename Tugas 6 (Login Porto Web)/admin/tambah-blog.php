@@ -68,7 +68,8 @@ if (isset($_POST['edit'])) {
     $filePath = "../assets/uploads/" . $fileName;
     move_uploaded_file($foto['tmp_name'], $filePath);
 
-  $q_update = mysqli_query($conn, "UPDATE blog SET kategori='$id_kategori', judul='$judul', judul='$judul', status='$status', isi='$isi', tags='$tags' foto='$fileName' WHERE id = $id");
+  $q_update = mysqli_query($conn, "UPDATE blog SET id_kategori='$id_kategori', judul='$judul', isi='$isi', foto='$fileName', tags='$tags', status='$status'  WHERE id = $id");
+  
   if ($q_update) {
     header("Location: blog.php");
   } else {
@@ -264,7 +265,9 @@ if (isset($_POST['edit'])) {
   
   <!-- Template Main JS File -->
   <script src="../assets/js/main.js"></script>
-  
+
+
+  <!-- Summernote -->
   <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
   <link href="https://cdn.jsdelivr.net/npm/summernote@0.9.0/dist/summernote-lite.min.css" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/summernote@0.9.0/dist/summernote-lite.min.js"></script>
@@ -273,6 +276,15 @@ if (isset($_POST['edit'])) {
       height: 300,
     })
   </script>
+
+  <!-- Data Table -->
+  <link rel="stylesheet" href="//cdn.datatables.net/2.2.2/js/dataTables.min.js">
+  <script src="cdn.datatables.net/2.2.2/js/dataTables.min.js"></script>
+  <script>
+  let table = new DataTable('#myTable');
+  </script>
+
+
 
 </body>
 
