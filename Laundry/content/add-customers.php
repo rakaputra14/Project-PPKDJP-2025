@@ -11,9 +11,9 @@
     $insert = mysqli_query($conn, "INSERT INTO customers (customer_name, customer_phone, customer_address) VALUES ('$customer_name','$customer_phone','$customer_address')");
 
     if ($insert) {
-      header("Location: ?page=customers?add=success");
+      header("Location: ?page=customers&add=success");
     } else {
-      header("Location: ?page=add-customers?tambah=error");
+      header("Location: ?page=add-customers&tambah=error");
     }
 
   }
@@ -31,9 +31,9 @@
   $q_update = mysqli_query($conn, "UPDATE customers SET customer_name='$customer_name', customer_phone='$customer_phone', customer_address='$customer_address' WHERE id = $id");
   
   if ($q_update) {
-    header("Location: ?page=customers?add=success");
+    header("Location: ?page=customers&add=success");
   } else {
-    header("Location: ?page=tambah-blog?edit=$id");
+    header("Location: ?page=add-customers&edit=$id");
   }
 }
 ?>

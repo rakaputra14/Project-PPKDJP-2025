@@ -27,6 +27,12 @@
     <link rel="stylesheet" href="../assets/template/assets/css/style.css">
     <!-- End layout styles -->
     <link rel="shortcut icon" href="../assets/template/assets/images/favicon.png" />
+
+    <style>
+      * {
+        color: white !important;
+      }
+    </style>
   </head>
   <body>
     <div class="container-scroller">
@@ -50,8 +56,6 @@
             }?>
           <!-- content-wrapper ends -->
 
-
-
           <!-- partial:partials/_footer.html -->
           <?php include '../inc/footer.php'?>
           <!-- partial -->
@@ -60,6 +64,7 @@
       </div>
       <!-- page-body-wrapper ends -->
     </div>
+
     <!-- container-scroller -->
     <!-- plugins:js -->
     <script src="../assets/template/assets/vendors/js/vendor.bundle.base.js"></script>
@@ -77,9 +82,49 @@
     <script src="../assets/template/assets/js/misc.js"></script>
     <script src="../assets/template/assets/js/settings.js"></script>
     <script src="../assets/template/assets/js/todolist.js"></script>
+
     <!-- endinject -->
     <!-- Custom js for this page -->
     <script src="../assets/template/assets/js/dashboard.js"></script>
     <!-- End custom js for this page -->
+
+    <script src="../assets/js/main.js" ></script>
+    <script src="../assets/js/jquery-3.7.1.min.js"></script>
+
+    <!-- <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script> -->
+
+    <script>
+      $('#id_service').change(function(){
+        let id_service = $(this).val();
+        $.ajax({
+          url: "get-service.php?id_services=" + id_service,
+          method: "get",
+          dataType: "json",
+          success: function(res) {
+            $('#service_price').val(res.data.service_price)
+            }
+        });
+      });
+
+      $('.add-row').click(function(){
+        let serviceName = $('#id_service').find("option:selected").text();
+        let service_price = $('#service_price').val();
+        let newRow = "";
+        newRow += "<tr>"
+        newRow += `<td> ${serviceName } </td>`; //optional (newRow += "<td>" + service_name + "</td>")
+        newRow += `<td> ${service_price.toLocalString()} </td>`;
+        newRow += "<td><input class='form-control' name='qty[]' type='number'></td>";
+        newRow += "<td><input class='form-control' name='notes[]' type='number'></td>";
+        newRow += "<td><button class='btn btn-success btn-sm remove'>Remove</button></td>";
+        newRow += "</tr>"
+
+        $('.table-order tbody').append(newRow);
+
+        $('.remove').click(function(event){
+          event.preventDefault();
+          $(this).closest("tr").remove();
+        });
+      });
+    </script>
   </body>
 </html>

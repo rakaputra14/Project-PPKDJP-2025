@@ -1,50 +1,73 @@
-<form class="forms-sample">
-        <div class="form-group">
-            <label for="exampleInputEmail1">Email address</label>
-            <input type="email" class="form-control p-input" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-            <small id="emailHelp" class="form-text text-muted text-success"><span class="fa fa-info mt-1"></span>  We'll never share your email with anyone else.</small>
+<?php
+if (isset($_POST['save'])) {
+    $id_level = $_POST['id_level'];
+    $name = $_POST['name'];
+    $email = $_POST['email'];
+    $password = sha1($_POST['password']);
+
+    $insert = mysqli_query($conn, "INSERT INTO users (id_level, name, email, password)
+    VALUES('$id_level','$name','$email','$password')");
+    if ($insert) {
+        header("location:?page=users&add=success");
+    }
+}
+
+$id = isset($_GET['edit']) ? $_GET['edit'] : '';
+$queryEdit = mysqli_query($conn, "SELECT * FROM users WHERE id = '$id'");
+$rowEdit = mysqli_fetch_assoc($queryEdit);
+
+if (isset($_POST['edit'])) {
+    $id = $_GET['edit'];
+    $$id_level = $_POST['id_level'];
+    $name = $_POST['name'];
+    $email = $_POST['email'];
+
+    if ($_POST['password']) {
+        $password = sha1($_POST['password']);
+    } else {
+        $password = $rowEdit['password'];
+    }
+
+    $update = mysqli_query($conn, "UPDATE users 
+    SET id_level ='$id_level', name='$name', email='$email', password='$password' WHERE id ='$id'");
+    if ($update) {
+        header("location:?page=user&update=success");
+    }
+}
+
+$queryLevels = mysqli_query($conn, "SELECT * FROM levels ORDER BY id DESC");
+$rowLevels  = mysqli_fetch_all($queryLevels, MYSQLI_ASSOC);
+
+
+?>
+
+<form class="forms-sample" method="post">
+        <div class="mb-3">
+            <label for="">Level Name *</label>
+            <select name="id_level" id="" class="form-control">
+                <option value="">Choose Level</option>
+                <?php foreach ($rowLevels as $rowLevel): ?>
+                    <option <?php echo isset($_GET['edit']) ? ($rowLevel['id'] == $rowEdit['id_level']) ? 'selected' : '' : '' ?> value="<?php echo $rowLevel['id'] ?>"><?php echo $rowLevel['level_name'] ?></option>
+                <?php endforeach ?>
+            </select>
         </div>
         <div class="form-group">
-            <label for="exampleInputPassword1">Password</label>
-            <input type="password" class="form-control p-input" id="exampleInputPassword1" placeholder="Password">
+            <label for="name">Name</label>
+            <input type="name" class="form-control p-input" id="name" aria-describedby="emailHelp" 
+            placeholder="Enter Your Name" value="<?php echo isset($_GET['edit']) ? $rowEdit['name'] : '' ?>">
         </div>
         <div class="form-group">
-            <label for="exampleTextarea">Example textarea</label>
-            <textarea class="form-control p-input" id="exampleTextarea" rows="3"></textarea>
+            <label for="email">Email address</label>
+            <input type="email" class="form-control p-input" id="email" aria-describedby="emailHelp" 
+            placeholder="Enter email" value="<?php echo isset($_GET['edit']) ? $rowEdit['email'] : '' ?>">
+            <small id="emailHelp" class="form-text text-muted text-success"><span class="fa fa-info mt-1"></span>We'll never share your email with anyone else.</small>
         </div>
         <div class="form-group">
-            <label for="exampleInputFile">File input</label>
-            <input type="file" class="form-control-file" id="exampleInputFile" aria-describedby="fileHelp">
-            <small id="fileHelp" class="form-text text-muted">This is some placeholder block-level help text for the above input. It's a bit lighter and easily wraps to a new line.</small>
-        </div>
-        <fieldset class="form-group">
-            <legend class="mb-4 mt-5">Radio buttons</legend>
-            <div class="form-check">
-                <label class="form-check-label">
-                  <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios1" value="option1" checked>
-                  Option one is this and that—be sure to include why it's great
-                </label>
-            </div>
-            <div class="form-check">
-                <label class="form-check-label">
-                  <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios2" value="option2">
-                  Option two can be something else and selecting it will deselect option one
-                </label>
-            </div>
-            <div class="form-check disabled">
-                <label class="form-check-label">
-                  <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios3" value="option3" disabled>
-                  Option three is disabled
-                </label>
-            </div>
-        </fieldset>
-        <div class="form-check col-12">
-            <label class="form-check-label">
-              <input type="checkbox" class="form-check-input">
-              Check me out
-            </label>
+            <label for="password">Password</label>
+            <input type="password" class="form-control p-input" id="password" 
+            placeholder="Password" value="<?php echo isset($_GET['edit']) ? $rowEdit['email'] : '' ?>">
         </div>
         <div class="col-12">
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="save" class="btn btn-primary" name="<?php echo isset($_GET['edit']) ? 'edit' : 'save' ?>"><?php echo isset($_GET['edit']) ? 'edit' : 'save' ?></button>
         </div>
-    </form>
+</form>

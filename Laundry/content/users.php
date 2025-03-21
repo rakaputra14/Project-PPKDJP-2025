@@ -3,14 +3,6 @@ $queryUser = mysqli_query($conn, "SELECT * FROM users ORDER BY id DESC");
 $rowUser = mysqli_fetch_all($queryUser, MYSQLI_ASSOC);
 
 ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-</head>
-<body>
     <table class="table">
           <div align="right" left class="mb-2"> 
             <a class="btn btn-primary mb-2" href="?page=add-users">Create New Users</a> 
@@ -41,5 +33,3 @@ $rowUser = mysqli_fetch_all($queryUser, MYSQLI_ASSOC);
         <?php } ?>
       </tbody>
     </table>
-</body>
-</html>
