@@ -49,6 +49,21 @@ $id_trans++;
 
 $kode_transaksi = "TR" . date("dmy") . sprintf("%03s", $id_trans);
 
+$idorder = mysqli_insert_id($conn);
+$qty = isset($_POST['qty']) ? $_POST['qty'] : 0;
+$notes = isset($_POST['notes']) ? $_POST['notes'] : 0;
+$idService = isset($_POST['service']) ? $_POST['service'] : 0;
+
+for ($i = 0; $i < $_POST['countDisplay']; $i++) {
+    $serviceName = $_POST['serviceName'];
+    $findIdSer = mysqli_query($conn, "SELECT id FROM services WHERE service_name = '$serviceName'");
+    $rowIdSer = mysqli_fetch_assoc($findIdSer);
+
+    $idService = $rowIdSer['id'];
+
+    $sqlInsertDetail = mysqli_query($conn, "INSERT INTO trans_order_detail (id_order, id_service, qty, notes) VALUES ('$idorder', '$idService', '$qty[$i]', '$notes[$i]')");
+}
+
 ?>
 <div class="row">
     <div class="col-sm-12">
@@ -58,7 +73,7 @@ $kode_transaksi = "TR" . date("dmy") . sprintf("%03s", $id_trans);
             </div>
             <div class="card-body mt-3">
                 <form action="" method="post">
-                    <input type="text" id="service_price">
+                    <input type="hidden" id="service_price">
                     <div class="row">
                         <div class="col-sm-6">
                             <div class="mb-3 row">
